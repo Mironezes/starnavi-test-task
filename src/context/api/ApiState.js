@@ -1,5 +1,5 @@
 import React, {useReducer} from 'react'
-import {GAME_RESET, SET_GAME_MODE, GET_GAME_MODES, SET_ACTIVE_SQUARE} from '../actionTypes'
+import {GAME_RESET, SET_GAME_MODE, GET_GAME_MODES, SET_ACTIVE_SQUARE, REMOVE_ACTIVE_SQUARE} from '../actionTypes'
 import {ApiContext} from './apiContext'
 import {apiReducer} from './apiReducer'
 import axios from 'axios'
@@ -26,6 +26,7 @@ export const ApiState = ({children}) => {
   }
 
   const setCurrentGameMode = async (item) => {
+    
     dispatch({
       type: SET_GAME_MODE,
       payload: item
@@ -40,6 +41,15 @@ export const ApiState = ({children}) => {
     })   
   }
 
+  const removeActiveSquare = async (item) => {
+    dispatch({
+      type: REMOVE_ACTIVE_SQUARE,
+      payload: item
+    })   
+  }
+
+
+
   const resetGame = () => dispatch({
     type: GAME_RESET
   })
@@ -48,7 +58,7 @@ export const ApiState = ({children}) => {
 
   return(
     <ApiContext.Provider 
-      value={{gameModesList, activeSquares, currentGameSize, isGameStarted,  getGameModes, setCurrentGameMode, setActiveSquare, resetGame}}>
+      value={{gameModesList, activeSquares, currentGameSize, isGameStarted,  getGameModes, setCurrentGameMode, setActiveSquare, removeActiveSquare, resetGame}}>
       {children}
     </ApiContext.Provider>
   )

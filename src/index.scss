@@ -39,6 +39,16 @@ button:hover {
     margin-right: 10px;
   }
 }
+@media screen and (max-width: 550px) {
+  .mode-picker {
+    & {
+      flex-wrap: wrap;
+    }
+    &__select {
+      margin-bottom: 15px !important;
+    }
+  }
+}
 
 
 
@@ -81,7 +91,7 @@ button:hover {
     cursor: pointer;
     transition: background-color .1s ease-in-out;
   }
-  &-cell:hover {
+  &-cell.active {
     background: lightblue;
   }
 }
@@ -93,8 +103,16 @@ button:hover {
   & h3 {
     margin-top: 0;
   }
+  &-list {
+    position: relative;
+    max-height: 280px;
+    overflow: auto;
+  }
   &-list-tile {
     max-width: 80%;
+    margin-bottom: 15px;
     padding: 12px 15px;
   }
 }
+
+

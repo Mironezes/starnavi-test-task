@@ -1,9 +1,12 @@
-import {GET_GAME_MODES, SET_GAME_MODE, GAME_RESET, SET_ACTIVE_SQUARE} from "../actionTypes"
+import {GET_GAME_MODES, SET_GAME_MODE, GAME_RESET, SET_ACTIVE_SQUARE, REMOVE_ACTIVE_SQUARE} from "../actionTypes"
   
 const handlers = {
   [GET_GAME_MODES]: (state, {payload}) => ({...state, gameModesList: payload }),
   [SET_GAME_MODE]: (state, {payload}) => ({...state, currentGameSize: payload, isGameStarted: true }),
-  [SET_ACTIVE_SQUARE]: (state, {payload}) => ({...state, activeSquares: [...state.activeSquares, payload] }),
+  [SET_ACTIVE_SQUARE]: (state, {payload}) => ({...state, activeSquares: [...state.activeSquares, payload,] }),
+  [REMOVE_ACTIVE_SQUARE]: (state, {payload}) => (
+    {...state, activeSquares: [...state.activeSquares.filter(item => item.id !== payload)]}),
+  
   [GAME_RESET]: state => ({...state, currentGameSize: 0, activeSquares: [],  isGameStarted: false}),
 
   DEFAULT: state => state

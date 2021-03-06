@@ -5,7 +5,7 @@ import {ApiContext} from '../context/api/apiContext'
 
 export const GameTable = () => {
 
-  const {activeSquares, currentGameSize, isGameStarted} = useContext(ApiContext)
+  const {activeSquares, setActiveSquare, removeActiveSquare, currentGameSize, isGameStarted} = useContext(ApiContext)
 
   let board = createBoard(currentGameSize)
 
@@ -24,8 +24,26 @@ export const GameTable = () => {
     return arr
   }
 
-  const activeSquaresHandler = (item) => {
-    console.log(item)
+
+  const activeSquaresHandler = (cell, e) => {
+    let arr = cell.split('.')
+
+    let cellCoordinates = {
+      id: `0${arr[0]}${arr[1]}`,
+      row: arr[0],
+      column: arr[1],
+    }
+
+    let filterById = cellCoordinates.id
+    
+    if(activeSquares.find(cellCoordinates => cellCoordinates.id === filterById)) {
+      e.target.classList.remove('active')
+      removeActiveSquare(cellCoordinates.id)
+    } 
+    else {  
+      e.target.classList.add('active')
+      setActiveSquare(cellCoordinates)
+    }
   }
   
 
@@ -39,7 +57,7 @@ export const GameTable = () => {
             {board.map((i) => (
                 <tr className="game-table-row" key={i}>
                   {i.map((j) => (
-                    <td onMouseEnter={() => activeSquaresHandler(j)}className="game-table-cell" data-value={j} key={j}></td>
+                    <td onMouseOver={(e) => activeSquaresHandler(j, e)} className={`game-table-cell`} key={j}></td>
                   ))}
                 </tr>
             ))}

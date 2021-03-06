@@ -2,5 +2,8 @@ export const GET_GAME_MODES = 'GET_GAME_MODES'
 export const SET_GAME_MODE = 'SET_GAME_MODE'
 export const GAME_RESET = 'GAME_RESET'
 export const SET_ACTIVE_SQUARE = 'SET_ACTIVE_SQUARE'
+export const REMOVE_ACTIVE_SQUARE = 'REMOVE_ACTIVE_SQUARE'
+
+
 
 
