@@ -19,10 +19,10 @@ export const Home = () => {
   return (
     <Grid container>
       <h1>StarNavi Test Task</h1>
-      <Grid container spacing={3} direction="row" justify="space-between">
+      <Grid container spacing={8} direction="row" justify="space-between">
         <Grid item xs={12} sm={8}>
           <ModePicker modes={gameModesList} />
-          <GameTable activeSquares={activeSquares} />
+          <GameTable/>
         </Grid>
 
         <Grid item xs={12} sm={4}>
